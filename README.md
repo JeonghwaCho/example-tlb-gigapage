@@ -18,7 +18,7 @@ Demonstrates how to setup Giga pages with U series core's TLB MMU.
 Here is high level flow diagram illustrate how to setup gigapge TLB entry.
 <br />
 <br />
-<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/TLB-Gigapage.svg" width="800" />
+<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/image/TLB-Gigapage.svg" width="800" />
 <br />
 <br />
 
@@ -68,7 +68,7 @@ This imply that read/write to these two pages will be translated actions to the 
 physical address.
 <br />
 <br />
-<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/TLB-Gigapage-Overview.svg" width="720" />
+<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/image/TLB-Gigapage-Overview.svg" width="720" />
 <br />
 <br />
 
@@ -77,7 +77,7 @@ A test buffer, named buf, an array of 10 integers, is created and located at PA=
 will return 0xdeadbeef. 
 <br />
 <br />
-<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/TLB-Read-test.svg" width="720" />
+<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/image/TLB-Read-test.svg" width="720" />
 <br />
 <br />
 
@@ -85,7 +85,7 @@ If write value 0xbeefdeaf to VA=0x4xxx.xxxx, read it from 0x8xxxx.xxxx will be t
 same.
 <br />
 <br />
-<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/TLB-Write-test.svg" width="720" />
+<img src="https://github.com/sifive/example-tlb-gigapage/blob/master/image/TLB-Write-test.svg" width="720" />
 <br />
 <br />
 
@@ -99,6 +99,4 @@ same.
 | 1         | Fail to enable TLB or set PPN base address |
 | 2         | Read test failed |
 | 3         | Read test pass, Write test failed |
-
-
 
