@@ -81,14 +81,16 @@ void tlb_gigapage_readwrite_test() {
 
 	// this gigapage allow same code located in @ 0x2xxx.xxxx be execuated in U mode
 	// VA=0x0000.0000 - 0x3fff.ffff -> PA=0x0000.0000 - 0x3fff.ffff
-	pte[0]= (0x00000000 >>METAL_WORDADDR_SHIFT) | 0xDF;
+	pte[0]= (0x80000000 >>METAL_WORDADDR_SHIFT) | 0xDF;
 	
 	
 	// the following two gigapages will map to same PA
 	// read from/write to these two VAs will result of read from/write to the same PA
 	
 	// VA=0x4000.0000 - 0x7fff.ffff -> PA=0x8000.0000 - 0xbfff.ffff
-	pte[1]= (0x80000000 >>METAL_WORDADDR_SHIFT) | 0xD7;
+	// Change the property, 0xD7 -> 0xDF because 0x40400000 is the code execution region.
+	// pte[1]= (0x80000000 >>METAL_WORDADDR_SHIFT) | 0xD7;
+	pte[1]= (0x40000000 >>METAL_WORDADDR_SHIFT) | 0xDF;
 	// VA=0x8000.0000 - 0xbfff.ffff -> PA=0x8000.0000 - 0xbfff.ffff
 	pte[2]= (0x80000000 >>METAL_WORDADDR_SHIFT) | 0xD7;
 
@@ -134,7 +136,7 @@ void tlb_gigapage_readwrite_test() {
 	// the first test is read test, to do this setup pointer p to access buf, which
 	// located @ VA=0x8xxx.xxxx, from different VA (which is 0x4xxx.xxxx)
 	val = (unsigned long) buf ;
-	val = ( (val & 0x7fffffff) | 0x40000000);
+	val = ( (val & 0x7fffffff) | 0x00000000);
 	p = (unsigned long *) val;
 
 	if (p[0]!=buf[0] ) {
